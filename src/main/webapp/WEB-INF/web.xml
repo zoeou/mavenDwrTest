@@ -1,0 +1,41 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Archetype Created Web Application</display-name>
+	<filter>
+		<filter-name>characterFilter</filter-name>
+		<filter-class>com.zsy.dwr.service.CharacterFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<!-- 接收js的Ajax请求的servlet -->
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<!-- <servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class> -->
+		<!-- 启用逆向Ajax -->
+		<init-param>
+			<param-name>activeReverseAjaxEnabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>crossDomainSessionSecurity</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<!-- 允许远程 js -->
+		<init-param>
+			<param-name>allowScriptTagRemoting</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<!-- 拦截指定的URL -->
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+</web-app>
